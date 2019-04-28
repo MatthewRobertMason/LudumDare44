@@ -19,7 +19,7 @@ public class GameOver : MonoBehaviour
             switch (gm.coinsCollected)
             {
                 case 10:
-                    gameOverMessage.text = "As you were in life you are in death.  You are overcome with GREED, truely you have spent your life in a foolish endevor.  Perhaps you should have stoped persuing Treasure all the time and enjoyed some nature.";
+                    gameOverMessage.text = "As you were in life you are in death.  You are overcome with GREED, truely you have spent your life in a foolish endevor.  Perhaps you should have stoped persuing treasure all the time and enjoyed some nature.";
                     break;
 
                 case 9:
@@ -44,11 +44,19 @@ public class GameOver : MonoBehaviour
                     break;
 
                 case 0:
-                    gameOverMessage.text = "I see you have overcome your greed, well done.  I'll return you to the world of the living this time.  Always remember to enjoy the time you have, your life is the greatest currency you have.";
+                    if (gm.CompletedGame)
+                    {
+                        gameOverMessage.text = "I see you have overcome your greed, well done.  I'll return you to the world of the living this time.  Always remember to enjoy the time you have, your life is the greatest currency you have.";
+                    }
+                    else
+                    {
+                        gameOverMessage.text = "No coins? but no judgement.  Try harder next time";
+                    }
                     break;
             }
 
-            gameOverMessage.text += "\r\n\r\nCoins Collected: " + gm.coinsCollected + "\r\nLives paid for: " + (Mathf.Max(gm.timesDied-1, 0.0f));
+            gameOverMessage.text += "\r\n\r\nCoins Collected: " + gm.coinsCollected;
+            gameOverMessage.text += "\r\nLives paid for: " + ((gm.CompletedGame) ? (Mathf.Max(gm.timesDied, 0.0f)) : (Mathf.Max(gm.timesDied-1, 0.0f)));
         }
     }
 

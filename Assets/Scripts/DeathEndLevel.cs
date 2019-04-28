@@ -28,6 +28,7 @@ public class DeathEndLevel : MonoBehaviour
         if (collision.gameObject.GetComponent<Player>() != null)
         {
             numberOfCoins = FindObjectOfType<GameManager>().Coins;
+            FindObjectOfType<GameManager>().CompletedGame = true;
 
             _player.PreventMovement = true;
             
@@ -51,7 +52,10 @@ public class DeathEndLevel : MonoBehaviour
 
                     GameObject go = Instantiate(coinObject, locationForCoins);
                     Rigidbody2D rigidBody = go.AddComponent<Rigidbody2D>();
-                    rigidBody.AddForce(Vector2.up * 500.0f);
+
+                    Vector2 vec = new Vector2(Random.Range(-0.2f, 0.2f), 1.0f).normalized;
+
+                    rigidBody.AddForce(vec * 300.0f);
                     
                     Destroy(go, 1.0f);
 

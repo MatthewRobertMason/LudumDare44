@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     public int coinsCollected = 0;
     public int timesDied = 0;
 
-    public bool _gameOver = false;
+    private bool _gameOver = false;
+    private bool _completedGame = false;
     private bool _initialized = false;
 
     public int Coins
@@ -20,6 +21,12 @@ public class GameManager : MonoBehaviour
     {
         get { return _gameOver; }
         set { _gameOver = value; }
+    }
+
+    public bool CompletedGame
+    {
+        get { return _completedGame; }
+        set { _completedGame = value; }
     }
 
     private void Awake()
